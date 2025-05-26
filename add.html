@@ -140,4 +140,53 @@
   </div>
 
 </body>
+  <script>
+  const form = document.querySelector("form");
+  const btn = document.querySelector("button");
+
+  btn.addEventListener("click", async (e) => {
+    e.preventDefault();
+
+    const data = {
+      senaniPhoto: document.querySelectorAll("input")[0].value,
+      senaniName: document.querySelectorAll("input")[1].value,
+      state: document.querySelectorAll("input")[2].value,
+      division: document.querySelectorAll("input")[3].value,
+      district: document.querySelectorAll("input")[4].value,
+      tehsil: document.querySelectorAll("input")[5].value,
+      village: document.querySelectorAll("input")[6].value,
+      regNo: document.querySelectorAll("input")[7].value,
+      contribution: document.querySelector("textarea").value,
+      relation: document.querySelector("select").value,
+      heirName: document.querySelectorAll("input")[8].value,
+      fatherName: document.querySelectorAll("input")[9].value,
+      mobile: document.querySelectorAll("input")[10].value,
+      heirPhoto: document.querySelectorAll("input")[11].value,
+      heirState: document.querySelectorAll("input")[12].value,
+      heirDivision: document.querySelectorAll("input")[13].value,
+      heirDistrict: document.querySelectorAll("input")[14].value,
+      address: document.querySelectorAll("textarea")[1].value,
+      otherInfo: document.querySelectorAll("input")[15].value,
+    };
+
+    const url = "https://script.google.com/macros/s/AKfycbwoHoFlE97TPUD_L8lMgL2PKhLt4REo-8IqF5Cy_6Y04f63xVlcVvrfWyaIiAXEBmwA/exec";
+
+    try {
+      const res = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      const result = await res.text();
+      alert("Record Saved: " + result);
+      form.reset();
+    } catch (err) {
+      alert("Error: " + err);
+    }
+  });
+</script>
+
 </html>
+
